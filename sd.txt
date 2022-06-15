@@ -1,0 +1,265 @@
+main1
+package com.a.student.extstr_221005;
+
+import android.content.Intent;
+import android.os.Environment;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+public class MainActivity extends AppCompatActivity {
+    EditText text;
+    TextView tv;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+    public void savePrivate(View view) {
+        text=(EditText)findViewById(R.id.input);
+        File folder=getExternalFilesDir("221005");
+        File myFile=new File(folder,"prt.txt");
+        FileOutputStream fos = null;
+        String info = text.getText().toString();
+
+        try {
+            fos=new FileOutputStream(myFile);
+            fos.write(info.getBytes());
+            Toast.makeText(this, "Saved in Private", Toast.LENGTH_SHORT).show();
+            text.setText("");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+    }
+
+    public void showPrivate(View view) {
+        tv=(TextView)findViewById(R.id.textView);
+        File folder=getExternalFilesDir("221005");
+        File myFile=new File(folder,"prt.txt");
+
+        try {
+            FileInputStream fis = new FileInputStream(myFile);
+            byte[] b = new byte[fis.available()];
+            fis.read(b);
+            String data = new String(b);
+            tv.setText(data);
+            fis.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    public void next(View view) {
+        Intent in = new Intent(getApplicationContext(),Main2Activity.class);
+        startActivity(in);
+    }
+}
+main2
+package com.a.student.extstr_221005;
+
+import android.content.Intent;
+import android.os.Environment;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+public class Main2Activity extends AppCompatActivity {
+    EditText text;
+    TextView tv;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main2);
+    }
+
+    public void savePublic(View view) throws FileNotFoundException {
+        text=(EditText)findViewById(R.id.input);
+        File folder=getExternalFilesDir(Environment.DIRECTORY_ALARMS);
+        File myFile=new File(folder,"prt.txt");
+        FileOutputStream fos = null;
+
+        try {
+            fos = new FileOutputStream(myFile);
+            fos.write(text.getText().toString().getBytes());
+            Toast.makeText(this, "Saved in Public", Toast.LENGTH_SHORT).show();
+            text.setText("");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    public void showPublic(View view) {
+        tv=(TextView)findViewById(R.id.textView);
+        File folder=getExternalFilesDir(Environment.DIRECTORY_ALARMS);
+        File myFile=new File(folder,"prt.txt");
+
+        try {
+            FileInputStream fis = new FileInputStream(myFile);
+            byte[] b = new byte[fis.available()];
+            fis.read(b);
+            String data = new String(b);
+            tv.setText(data);
+            fis.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void next(View view) {
+        Intent in = new Intent(getApplicationContext(),MainActivity.class);
+        startActivity(in);
+    }
+}
+xml1
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="59dp"
+        android:ems="10"
+        android:hint="Enter text here"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/input"
+        android:layout_alignStart="@+id/button2"
+        android:layout_marginTop="41dp"
+        android:onClick="savePrivate"
+        android:text="Save Private" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp"
+        android:onClick="showPrivate"
+        android:text="Show Private" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="44dp"
+        android:onClick="next"
+        android:text="Public" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="62dp" />
+</RelativeLayout>
+xml2
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="59dp"
+        android:ems="10"
+        android:hint="Enter text here"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/input"
+        android:layout_alignStart="@+id/button2"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="36dp"
+        android:onClick="savePublic"
+        android:text="Save Public" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:onClick="showPublic"
+        android:text="Show Public" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="44dp"
+        android:onClick="next"
+        android:text="Private" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="49dp" />
+</RelativeLayout>

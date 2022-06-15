@@ -1,0 +1,653 @@
+email java
+package com.a.student.ex9;
+
+import android.content.Intent;
+import android.net.Uri;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+    EditText to, sub, msg;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        to=(EditText)findViewById(R.id.editText);
+        sub=(EditText)findViewById(R.id.sub);
+        msg=(EditText)findViewById(R.id.msg);
+    }
+
+
+
+    public void sendMail(View view) {
+        Intent emailIn = new Intent(Intent.ACTION_SEND);
+        emailIn.setData(Uri.parse("mail:to"));
+        emailIn.setType("message/rfc82");
+        emailIn.putExtra(Intent.EXTRA_EMAIL,to.getText().toString().trim());
+        emailIn.putExtra(Intent.EXTRA_SUBJECT,sub.getText().toString().trim());
+        emailIn.putExtra(Intent.EXTRA_TEXT,msg.getText().toString().trim());
+
+        try {
+            startActivity(Intent.createChooser(emailIn, "Send mail"));
+            Toast.makeText(this, "Mail Sent", Toast.LENGTH_SHORT).show();
+        }catch (Exception e){
+            Toast.makeText(this, "Mail NOT Sent", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+}
+
+multithread java
+package com.a.student.multithread_221005;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
+
+public class MainActivity extends AppCompatActivity {
+
+    ProgressBar p1,p2;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        p1 = (ProgressBar) findViewById(R.id.progressBar);
+        p2 = (ProgressBar) findViewById(R.id.progressBar2);
+
+    }
+
+    public void start(View view) {
+        p1.setProgress(0);
+        new Thread(new Task()).start();
+        p2.setProgress(0);
+        new Thread(new Task1()).start();
+
+    }
+    class Task implements Runnable{
+        public void run(){
+                for(int i=0;i<=10;i++){
+                    int value = i;
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    p1.setProgress(value);
+                }
+        }
+
+
+    }
+    class Task1 implements Runnable{
+        @Override
+        public void run(){
+            for(int i=0;i<=10;i++){
+                int value = i;
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                p2.setProgress(value);
+            }
+        }
+
+
+    }
+}
+
+cal java
+package com.a.student.calculator_221005;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+    Button b;
+    TextView tv;
+
+    int num = 0, pre =0, flg=0 ,x;
+    //int ans=0;
+    float ans=0;
+    String res="";
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+    }
+    public void result(int r,String rr,String rrr){
+        flg=1;
+        if(r==0){
+            String r1=String.valueOf(r);
+            res= r1+rr+rrr;
+        }else {
+            res = res + r + rr + rrr;
+        }
+    }
+    public void result(String r,String rr){
+        if(flg==1){
+            res="";
+            flg=0;
+        }
+        res = res + r + rr;
+    }
+
+    public void doc(int xy,String op){
+        if (pre == 1) {
+            ans = ans + num;
+        }
+        else if (pre == 2){
+            ans = ans - num;
+        }
+        else if (pre == 3){
+            ans = ans / num;
+        }
+        else if (pre == 4){
+            ans = ans * num;
+        }
+        else {
+            ans = num;
+        }
+        pre =xy;
+        result(num,op,String.valueOf(ans));
+        num = 0;
+        if((ans*10)%10 == 0){
+            x= ((int) ans);
+            String d = String.valueOf(x);
+            tv.setText(d);
+        }else {
+            String d = String.valueOf(ans);
+            tv.setText(d);
+        }
+
+    }
+
+    public void calc(View view) {
+        tv = (TextView) findViewById(R.id.textView);
+        if (view.getId() == R.id.b0){
+            num = num *10 + 0;
+            String d = String.valueOf(num);
+            tv.setText(d);
+        }
+
+        else if (view.getId() == R.id.b1){
+            num = num *10 + 1;
+            String d = String.valueOf(num);
+            tv.setText(d);
+        }
+
+        else if (view.getId() == R.id.b2){
+            num = num *10 + 2;
+            String d = String.valueOf(num);
+            tv.setText(d);
+        }
+
+        else if (view.getId() == R.id.b3){
+            num = num *10 + 3;
+            String d = String.valueOf(num);
+            tv.setText(d);
+        }
+
+        else if (view.getId() == R.id.b4){
+            num = num *10 + 4;
+            String d = String.valueOf(num);
+            tv.setText(d);
+        }
+
+        else if (view.getId() == R.id.b5){
+            num = num *10 + 5;
+            String d = String.valueOf(num);
+            tv.setText(d);
+        }
+
+        else if (view.getId() == R.id.b6){
+            num = num *10 + 6;
+            String d = String.valueOf(num);
+            tv.setText(d);
+        }
+        else if (view.getId() == R.id.b7){
+            num = num *10 + 7;
+            String d = String.valueOf(num);
+            tv.setText(d);
+        }
+        else if (view.getId() == R.id.b8){
+            num = num *10 + 8;
+            String d = String.valueOf(num);
+            tv.setText(d);
+        }
+        else if (view.getId() == R.id.b9){
+            num = num *10 + 9;
+            String d = String.valueOf(num);
+            tv.setText(d);
+        }
+        else if (view.getId() == R.id.badd){
+            doc(1,"+");
+        }
+        else if (view.getId() == R.id.bsub){
+            doc(2,"-");
+        }
+        else if (view.getId() == R.id.bmul){
+            doc(4,"*");
+        }
+        else if (view.getId() == R.id.bdiv){
+            doc(3,"/");
+        }
+        else if (view.getId() == R.id.beq){
+            doc(0,"=");
+        }
+        else if (view.getId() == R.id.bc){
+            num = 0;
+            ans=0;
+            pre=0;
+            res="";
+            String d = String.valueOf(num);
+            tv.setText(d);
+        }
+        else{
+            tv.setText(res);
+        }
+
+
+
+    }
+}
+
+calc xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="125dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="290dp"
+                android:layout_height="125dp"
+                android:padding="20dp"
+                android:text="0"
+                android:textSize="36sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/step"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="calc"
+                android:text="Steps" />
+        </TableRow>
+    </TableLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="700dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+
+            <Button
+                android:id="@+id/b9"
+                android:layout_width="97.5dp"
+                android:layout_height="100dp"
+                android:onClick="calc"
+                android:text="9"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/b8"
+                android:layout_width="97.5dp"
+                android:layout_height="100dp"
+                android:onClick="calc"
+                android:text="8"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/b7"
+                android:layout_width="97.5dp"
+                android:layout_height="100dp"
+                android:onClick="calc"
+                android:text="7"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/badd"
+                android:layout_width="97.5dp"
+                android:layout_height="85dp"
+                android:onClick="calc"
+                android:text="+"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/b6"
+                android:layout_width="97.5dp"
+                android:layout_height="100dp"
+                android:onClick="calc"
+                android:text="6"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/b5"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:onClick="calc"
+                android:text="5"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/b4"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:onClick="calc"
+                android:text="4"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/bsub"
+                android:layout_width="wrap_content"
+                android:layout_height="85dp"
+                android:onClick="calc"
+                android:text="-"
+                android:textSize="30sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+            <Button
+                android:id="@+id/b3"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:onClick="calc"
+                android:text="3"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/b2"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:onClick="calc"
+                android:text="2"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/b1"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:onClick="calc"
+                android:text="1"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/bmul"
+                android:layout_width="wrap_content"
+                android:layout_height="85dp"
+                android:onClick="calc"
+                android:text="*"
+                android:textSize="30sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+
+            <Button
+                android:id="@+id/bc"
+                android:layout_width="97.5dp"
+                android:layout_height="85dp"
+                android:onClick="calc"
+                android:text="CE"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/b0"
+                android:layout_width="97.5dp"
+                android:layout_height="100dp"
+                android:onClick="calc"
+                android:text="0"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/bdiv"
+                android:layout_width="97.5dp"
+                android:layout_height="85dp"
+                android:onClick="calc"
+                android:text="/"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/beq"
+                android:layout_width="97.5dp"
+                android:layout_height="95dp"
+                android:onClick="calc"
+                android:text="="
+                android:textSize="30sp" />
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>
+
+noti java
+package com.a.student.ex5;
+
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.os.Build;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    EditText title,message;
+    Button button;
+    int nc;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        title=(EditText)findViewById(R.id.tiltle);
+        message=(EditText)findViewById(R.id.message);
+        button=(Button)findViewById(R.id.button);
+        button.setOnClickListener(this);
+        nc=0;
+    }
+
+    public void onClick(android.view.View v){
+        String t,m;
+        t=title.getText().toString().trim();
+        if(t.equals("")){
+            t="Notification";
+        }
+        /*
+        if(Build.VERSION.SDK_INT > Build.VERSION.o){
+            NotificationChannel nch = new NotificationChannel("My notify ID","My Notify ID",NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager nm =getSystemService(NotificationManager.class);
+            nm.createNotificationChannel((nch));
+        }*/
+
+        NotificationCompat.Builder ncb = new NotificationCompat.Builder(this);
+        m=message.getText().toString().trim();
+        ncb.sexp_5etSmallIcon(R.drawable.ic_launcher_background);
+        ncb.setContentTitle(t);
+        ncb.setContentText(m);
+        nc++;
+
+        //NotificationManager nm = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+        //nm.notify(nc,ncb.build());
+
+        NotificationManagerCompat nmc = NotificationManagerCompat.from(MainActivity.this);
+        nmc.notify(nc,ncb.build());
+
+    }
+}
+
+map java
+package com.a.student.map;
+
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+    TextView log,lat;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        log=(TextView)findViewById(R.id.log);
+        lat=(TextView)findViewById(R.id.lat);
+    }
+
+    public void locate(View view) {
+        Location l=getLocation();
+        if(l!=null){
+            double latt=l.getLatitude();
+            double longg=l.getLongitude();
+            String outlat= String.format("Lattitude : %s", latt);
+            String outlog= String.format("Longitude : %s", longg);
+
+            log.setText(outlog);
+            lat.setText(outlat);
+
+        }
+
+    }
+
+    public Location getLocation(){
+        Context context = getApplicationContext();
+        if (ContextCompat.checkSelfPermission(context,Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED){
+            Toast.makeText(context, "Permission Denied", Toast.LENGTH_SHORT).show();
+            return null;
+        }
+        LocationManager lm=(LocationManager)context.getSystemService(context.LOCATION_SERVICE);
+        boolean isGPS = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        if(isGPS){
+            lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,6000,10,(LocationListener)this);
+            Location l =lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            return l;
+        }else{
+            Toast.makeText(context, "Please Enable GPS", Toast.LENGTH_SHORT).show();
+        }
+        return null;
+    }
+}
+other map java
+package com.a.student.map;
+
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+    //TextView log,lat;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        //log=(TextView)findViewById(R.id.log);
+        //lat=(TextView)findViewById(R.id.lat);
+    }
+
+    public void locate(View view) {
+        Location l=getLocation();
+        if(l!=null){
+            double latt=l.getLatitude();
+            double longg=l.getLongitude();
+            Toast.makeText(this,"longi"+longg+"lati"+latt, Toast.LENGTH_SHORT).show();
+
+            /*String outlat= "Lattitude : " + latt;
+            String outlog= "Longitude : " + longg;
+
+            log.setText(outlog);
+            lat.setText(outlat);*/
+
+        }
+
+    }
+
+    public Location getLocation(){
+        Context context = getApplicationContext();
+        if (ContextCompat.checkSelfPermission(context,Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+            Toast.makeText(context, "Permission Denied", Toast.LENGTH_SHORT).show();
+            return null;
+        }
+        LocationManager lm=(LocationManager)context.getSystemService(context.LOCATION_SERVICE);
+        boolean isGPS = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        if(isGPS){
+            lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,6000,10,(LocationListener) this);
+            Location l =lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            return l;
+        }else{
+            Toast.makeText(context, "Please Enable GPS", Toast.LENGTH_SHORT).show();
+        }
+        return null;
+    }
+}
+
+

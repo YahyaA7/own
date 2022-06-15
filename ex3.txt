@@ -1,0 +1,558 @@
+--------------------------
+813819104005
+--------------------------
+Exercise 3
+--------------------------
+home.html
+--------------------------
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Legends</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                background-color: dimgrey; 
+            }
+            h1{
+                text-align: center;
+                font-family: cursive;
+                color: #eaeaea;
+                font-size:4rem;
+                padding: 2rem;
+            }
+            div{
+                margin:5rem;
+                padding:2rem;
+                border-radius: 5rem;
+                background-color:  slategrey;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1>Welcome to LEGENDS</h1>
+        </div>
+    </body>
+</html>
+
+--------------------------
+payment.html
+--------------------------
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Payment</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                background-color: dimgrey; 
+            }
+            h1{
+                font-family: fantasy;
+                color: #eaeaea;
+                font-size:3rem;
+                padding-top: 2rem;
+            }
+            #payment{
+                margin-top:5rem;
+                margin-left: 10rem;
+                margin-right: 10rem;
+                padding: 3rem;
+                padding-bottom:2.5rem; 
+                text-align: center;
+                background-color: #eaeaea;
+                border-radius: 3rem;
+            }
+            button{
+                padding:0.5rem 2rem;
+                margin:2rem;
+                color:#EAEAEA;
+                font-family: monospace;
+                font-weight: bold;
+                font-size: 1.5rem;
+                background-color: black;
+            }
+          
+            label{
+                font-family: monospace;
+                font-weight: bold;
+                font-size: 2rem;
+                color: darkblue;
+                margin:2rem;
+            }
+             input{
+                font-family: monospace;
+                font-weight: bold;
+                font-size: 1.5rem;
+                color: deeppink;
+            }
+        </style>
+    </head>
+    <body>
+        <center>
+        <h1>LEGENDS Payment</h1>
+        <div id="payment">
+            <form action="home.html" method="post">
+                <label>Account Holder Name</label>
+                <input type="text" id="name" name="name" required>
+                <p id="shown"></p>
+                <label>Account Number</label>
+                <input type="text" id="acn" onchange="checkacn()" required>
+                <p id="showacn"></p>
+                <label>Enter the CVV</label>
+                <input type="text" id="cvv" onchange="checkcvv()" required>
+                <p id="showcvv"></p>
+                
+                <br>
+                <button id="pay" type="submit" disabled>PAY</button>
+                
+                <br>
+                
+            </form>
+        </div>
+        </center>
+    <script src="index.js"></script>
+    </body>
+</html>
+
+--------------------------
+index.html
+--------------------------
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <style>
+            body{
+                background-color: dimgrey; 
+            }
+            h1{
+                font-family: fantasy;
+                color: #eaeaea;
+                font-size:3rem;
+                padding-top: 2rem;
+            }
+            #login{
+                margin-top:5rem;
+                margin-left: 10rem;
+                margin-right: 10rem;
+                padding: 3rem;
+                padding-bottom:2.5rem; 
+                text-align: center;
+                background-color: #eaeaea;
+                border-radius: 3rem;
+            }
+            button{
+                padding:0.5rem 2rem;
+                margin:2rem;
+                color:#EAEAEA;
+                font-family: monospace;
+                font-weight: bold;
+                font-size: 1.5rem;
+                background-color: black;
+            }
+            a{
+                text-decoration: none;
+                font-size: 2rem;
+                color: darkred;
+                background-color: activeborder;
+                padding:1rem;
+                border-radius:3rem;
+            }
+            label{
+                font-family: monospace;
+                font-weight: bold;
+                font-size: 2rem;
+                color: darkblue;
+                margin:2rem;
+            }
+            input{
+                font-family: monospace;
+                font-weight: bold;
+                font-size: 2rem;
+                color: deeppink;
+            }
+        </style>
+    </head>
+    <body>
+    <center>
+        <h1>LEGENDS LOGIN</h1>
+        <div id="login">
+            <form action="payment.html" method="post">
+                <label>Username</label>
+                <input type="text" id="user" name="user" onchange="checkusernamel()" required>
+                <p id="showu"></p>
+                <label>Password</label>
+                <input type="password" id="password" onchange="checkpasswordl()" required>
+                <p id="showp"></p>
+                
+                <br>
+                <button id="log" type="submit" disabled>LOGIN</button>
+                <button type="reset">RESET</button>
+                <br>
+                <br>
+                <a href="reg.html">New User</a>
+            </form>
+        </div>
+        </center>
+    <script src="index.js"></script>
+    </body>
+</html>
+
+--------------------------
+reg.html
+--------------------------
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Register</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                background-color: dimgrey; 
+            }
+            h1{
+                text-align: center;
+                font-family: fantasy;
+                color: #eaeaea;
+                font-size:2rem;
+ 
+            }
+            #register{
+               
+                margin-left: 10rem;
+                margin-right: 10rem;
+                padding: 3rem;
+                padding-top: 1rem;
+                padding-bottom:2.5rem; 
+                text-align: left;
+                background-color: #eaeaea;
+                border-radius: 3rem;
+            }
+            button{
+                padding:0.4rem 2rem;
+                margin:2rem;
+                color:#EAEAEA;
+                font-family: monospace;
+                font-weight: bold;
+                font-size: 1rem;
+                background-color: black;
+            }
+            a{
+                text-decoration: none;
+                font-size: 1.2rem;
+                color: darkred;
+                background-color: activeborder;
+                padding:0.8rem;
+                border-radius:3rem;
+            }
+            label{
+                font-family: monospace;
+                font-weight: bold;
+                font-size: 1.5rem;
+                color: darkblue;
+                margin:4rem;
+            }
+            input{
+                position: absolute;
+                right: 25rem;
+                font-family: monospace;
+                font-weight: bold;
+                font-size: 1.5rem;
+                color: deeppink;
+            }
+            p{
+                position:relative;
+                left:28rem;
+            }
+        </style>
+    </head>
+    <body>
+     
+        <h1>LEGENDS Register</h1>
+        <div id="register">
+            <form action="payment.html" method="post">
+                <label>Name   </label>
+                <input type="text" id="name" name="name" required>
+                <p></p>
+                
+                <label>Username</label>
+                <input type="text" id="user" name="user" onchange="checkusername()" required>
+                <p id="showu"></p>
+                
+                <label>DOB</label>
+                <input style="right:30.55rem;" type="date" id="d" name="d" onchange="checkdate()" required>
+                <p id="showd"></p>
+                
+                <label>MobileNo</label>
+                <input type="text" id="mno" name="mno" onchange="checkmno()" required>
+                <p id="showmno"></p>
+                
+                <label>AadharNo</label>
+                <input type="text" id="ano" name="ano" onchange="checkano()" required>
+                <p id="showano"></p>
+                
+                <label>Email</label>
+                <input type="email" id="em" name="em" onchange="checkem()" required>
+                <p id="showem"></p>
+                
+                <label>Password</label>
+                <input type="password" id="password" onchange="checkpassword()" required>
+                <p id="showp"></p>
+                
+                <label>Confirm Password</label>
+                <input type="password" id="pc" name="pc" onchange="checkpc()" required>
+                <p id="showpc"></p>
+                
+             
+                <br>
+                <center>
+                <button id="regi" type="submit" disabled>REGISTER</button>
+                <button type="reset">RESET</button>
+                
+                <br>
+                <a href="index.html">Old User</a>
+                </center>
+            </form>
+        </div>
+      
+    <script src="index.js"></script>
+    </body>
+</html>
+
+--------------------------
+index.js
+--------------------------
+var uf=0,pf=0;
+function checkusernamel(){
+    var input=document.getElementById("user").value;
+    var pattern=/^[a-z]{4}[0-9]{4}$/;
+    if(pattern.test(input)){
+        var str="Valid username";
+        uf=1;
+        document.getElementById("showu").style="color:green;";
+        enable();
+    }else{
+        var str="Invalid username";
+        uf=0;
+        document.getElementById("showu").style="color:red;";
+    }
+    document.getElementById("showu").innerHTML=str;
+}
+
+function checkpasswordl(){
+    var input=document.getElementById("password").value;
+    var pattern=/^[a-z]{5}[0-9]{3}[\@,\!,\#,\$,\%,\&,\*]{1}$/;
+    if(pattern.test(input)){
+        var str="Valid Password";
+        pf=1;
+        document.getElementById("showp").style="color:green;";
+        enable();
+    }else{
+        var str="Invalid Password\nPassword should contain 5 alphabets 3 digits and 1 special character";
+        document.getElementById("showp").style="color:red;";
+        pf=0;
+    }
+    document.getElementById("showp").innerHTML=str;
+}
+function enable(){
+if(uf===1 && pf===1){
+    document.getElementById("log").disabled=false;}
+}
+
+
+
+var pass=""
+var u=0,p=0,m=0,a=0,d=0,e=0,n=1;
+function checkusername(){
+    var input=document.getElementById("user").value;
+    var pattern=/^[a-z]{4}[0-9]{4}$/;
+    if(pattern.test(input)){
+        var str="Valid username";
+        u=1;
+        document.getElementById("showu").style="color:green;";
+        enabler();
+    }else{
+        var str="Invalid username";
+        u=0;
+        document.getElementById("showu").style="color:red;";
+    }
+    document.getElementById("showu").innerHTML=str;
+}
+
+function checkpassword(){
+    var input=document.getElementById("password").value;
+    var pattern=/^[a-z]{5}[0-9]{3}[\@,\!,\#,\$,\%,\&,\*]{1}$/;
+    if(pattern.test(input)){
+        var str="Valid Password";
+        document.getElementById("showp").style="color:green;";
+        pass=input;
+    }else{
+        var str="Invalid Password\nPassword should contain 5 alphabets 3 digits and 1 special character";
+        document.getElementById("showp").style="color:red;";
+    }
+    document.getElementById("showp").innerHTML=str;
+}
+
+function checkpc(){
+    var input=document.getElementById("pc").value;
+    if(pass===input){
+        var str="Password Match";
+        p=1;
+        document.getElementById("showpc").style="color:green;";
+        enabler();
+    }else{
+        var str="Enter same password";
+        document.getElementById("showpc").style="color:red;";
+        p=0;
+    }
+    document.getElementById("showpc").innerHTML=str;
+}
+
+function checkusername(){
+    var input=document.getElementById("user").value;
+    var pattern=/^[a-z]{4}[0-9]{4}$/;
+    if(pattern.test(input)){
+        var str="Valid username";
+        u=1;
+        document.getElementById("showu").style="color:green;";
+        enabler();
+    }else{
+        var str="Invalid username";
+        u=0;
+        document.getElementById("showu").style="color:red;";
+    }
+    document.getElementById("showu").innerHTML=str;
+}
+
+function checkpassword(){
+    var input=document.getElementById("password").value;
+    var pattern=/^[a-z]{5}[0-9]{3}[\@,\!,\#,\$,\%,\&,\*]{1}$/;
+    if(pattern.test(input)){
+        var str="Valid Password";
+        document.getElementById("showp").style="color:green;";
+        pass=input;
+    }else{
+        var str="Invalid Password\nPassword should contain 5 alphabets 3 digits and 1 special character";
+        document.getElementById("showp").style="color:red;";
+    }
+    document.getElementById("showp").innerHTML=str;
+}
+
+function checkem(){
+    var input=document.getElementById("em").value;
+    var pattern=/^[a-zA-Z0-9]{0,100}[\@]{1}[a-z]{0,10}[.]{1}[a-z]{0,10}$/;
+    if(pattern.test(input)){
+        var str="Valid Email";
+        e=1;
+        document.getElementById("showem").style="color:green;";
+        enabler();
+    }else{
+        var str="Invalid Email";
+        document.getElementById("showem").style="color:red;";
+        e=0;
+    }
+    document.getElementById("showem").innerHTML=str;
+}
+var acn=0,cvv=0; 
+function checkacn(){
+    var input=document.getElementById("acn").value;
+    var pattern=/^[1-9]{1}[0-9]{9,16}$/;
+    if(pattern.test(input)){
+        var str="Valid ACCOUNT number";
+        acn=1;
+        document.getElementById("showacn").style="color:green;";
+        enablep();
+    }else{
+        var str="Invalid Account Number";
+        document.getElementById("showacn").style="color:red;";
+        acn=0;
+    }
+    document.getElementById("showacn").innerHTML=str;
+}
+
+function checkcvv(){
+    var input=document.getElementById("cvv").value;
+    var pattern=/^[0-9]{3}$/;
+    if(pattern.test(input)){
+        var str="Valid CVV";
+        cvv=1;
+        document.getElementById("showcvv").style="color:green;";
+        enablep();
+    }else{
+        var str="Invalid CVV";
+        document.getElementById("showcvv").style="color:red;";
+        cvv=0;
+    }
+    document.getElementById("showcvv").innerHTML=str;
+}
+
+function checkmno(){
+    var input=document.getElementById("mno").value;
+    var pattern=/^[1-9]{1}[0-9]{9}$/;
+    if(pattern.test(input)){
+        var str="Valid Mobile No";
+        m=1;
+        document.getElementById("showmno").style="color:green;";
+        enabler();
+    }else{
+        var str="Invalid Mobile No";
+        document.getElementById("showmno").style="color:red;";
+        m=0;
+    }
+    document.getElementById("showmno").innerHTML=str;
+}
+
+function checkano(){
+    var input=document.getElementById("ano").value;
+    var pattern=/^[1-9]{1}[0-9]{11}$/;
+    if(pattern.test(input)){
+        var str="Valid Aadhar No";
+        a=1;
+        document.getElementById("showano").style="color:green;";
+        enabler();
+    }else{
+        var str="Invalid Aadhar No";
+        document.getElementById("showano").style="color:red;";
+        a=0;
+    }
+    document.getElementById("showano").innerHTML=str;
+}
+
+function checkdate(){
+    var input=document.getElementById("d").value;
+    var dateTo = "01/01/2020";
+    var to   = Date.parse(dateTo);
+    var inp = Date.parse(input);
+    if(inp <= to){
+        var str="Valid Date";
+        d=1;
+        document.getElementById("showd").style="color:green;";
+        enabler();
+    }else{
+        var str="Enter Date before : 01/01/2020";
+        document.getElementById("showd").style="color:red;";
+        m=0;
+    }
+    document.getElementById("showd").innerHTML=str;
+}
+
+function enabler(){
+if(u===1 && p===1 && m===1 && d===1 && a===1 && e===1 && n===1){
+    document.getElementById("regi").disabled=false;}
+}
+
+function enablep(){
+if(acn===1 && cvv===1){
+    document.getElementById("pay").disabled=false;}
+}
+----------------------------------------------------

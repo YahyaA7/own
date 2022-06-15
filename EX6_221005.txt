@@ -1,0 +1,346 @@
+--------------------------
+813819104005
+--------------------------
+Exercise 6
+--------------------------
+index.html
+--------------------------
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Shopping Cart</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                background-color: dimgrey; 
+            }
+            h1{
+                padding:3rem;
+                text-align: center;
+                font-family: monospace;
+                color: #eaeaea;
+                font-size:2rem;
+
+            }
+            #cart{
+
+                margin-left: 10rem;
+                margin-right: 10rem;
+                padding: 3rem;
+                padding-top: 2.5rem;
+                padding-bottom:2.5rem; 
+                text-align: left;
+                background-color: #eaeaea;
+                border-radius: 3rem;
+            }
+            button{
+                padding:0.4rem 2rem;
+                margin:2rem;
+                color:#EAEAEA;
+                font-family: monospace;
+                font-weight: bold;
+                font-size: 1rem;
+                background-color: black;
+            }
+
+            label{
+                text-align: center;
+                font-family: monospace;
+                font-weight: bold;
+                font-size: 1.5rem;
+                color: darkblue;
+                margin:4rem;
+            }
+            input{
+                font-family: monospace;
+                font-weight: bold;
+                font-size: 1.5rem;
+                color: deeppink;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>SHOPPING CART</h1>
+        <div id="cart">
+            <form action="shop.jsp" method="post">
+                <label>Enter Name : </label>
+                <input type="text" id="name" name="name" required>
+                <br>
+                <center>
+                    <button  type="submit">Submit</button> 
+                    <br>
+                </center>
+            </form>
+        </div>
+    </body>
+</html>
+
+
+--------------------------
+shop.jsp
+--------------------------
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.io.*" contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Product List</title>
+        <style>
+            body{
+                background-color: dimgrey; 
+            }
+            h1{
+                padding:3rem;
+                text-align: center;
+                font-family: monospace;
+                color: #eaeaea;
+                font-size:2rem;
+
+            }
+            #cart{
+
+                margin-left: 10rem;
+                margin-right: 10rem;
+                padding: 3rem;
+                padding-top: 2.5rem;
+                padding-bottom:2.5rem; 
+                text-align: left;
+                background-color: #eaeaea;
+                border-radius: 3rem;
+            }
+            button{
+                padding:0.4rem 2rem;
+                margin:2rem;
+                color:#EAEAEA;
+                font-family: monospace;
+                font-weight: bold;
+                font-size: 1rem;
+                background-color: black;
+            }
+
+            label{
+                text-align: center;
+                font-family: monospace;
+                font-weight: bold;
+                font-size: 1.5rem;
+                color: darkblue;
+                margin:4rem;
+            }
+            th{
+                width: 150px;
+                font-family: monospace;
+                font-weight: bold;
+                font-size: 1.5rem;
+                color: darkblue;
+            }
+            td{
+                width: 100px;
+                height: 100px;
+                padding:0.9rem;
+                text-align: center;
+                font-family: monospace;
+                font-size: 1.5rem;
+                color: darkblue;
+            }
+            img{
+                width:100px;
+            }
+            img:hover{
+               position: fixed;
+               bottom:20%;
+               z-index:1;
+               width:500px;
+            }
+            
+        </style>
+    </head>
+   <body>
+        <h1>SHOPPING CART LIST</h1>
+        <div id="cart">
+            <form action="cart.jsp" method="post">
+                <%! String name ;%>
+                <% 
+                    try{
+                        name = request.getParameter("name");
+                        Class.forName("oracle.jdbc.OracleDriver");
+                        Connection con=DriverManager.getConnection("jdbc:oracle:thin:@172.16.1.4:1521:saradb","221005","welcome");
+                        Statement st = con.createStatement();
+                        String query = "SELECT * FROM stockdb WHERE qtnonhand>0";
+                        ResultSet rs = st.executeQuery(query);
+                %>
+                <center>
+                <table border="1">
+                    <tr>
+                        <th>S no</th>
+                        <th>Select</th>
+                        <th>Product Name</th>
+                        <th>Product Image</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                    </tr>
+                    
+                <%! int i; %>
+                <% i=1; %>
+                <%  
+                        
+                while(rs.next()){
+                %>
+                    <tr>
+                    <td><%=i%></td>
+                    <td> <input type="checkbox" name= 'products' value='<%=rs.getString(1)%>'></td>
+                    <td><%=rs.getString(1)%></td>
+                    <td><img src="<%=rs.getString(1)%>.jpg" alt='image not found'></td>
+                    <td><%=rs.getString(2)%></td>
+                    <td><%=rs.getString(3)%></td>
+                    </tr>
+                
+                <%
+                    i++;
+                        }
+                    con.close();  
+                    }catch(Exception e){ 
+                        e.printStackTrace();
+                    }
+                    
+                %>
+                
+                </table>
+                </center>
+                <br>
+                <center>
+                    <input type="hidden" name="name" value="<%= name %>">
+                    <button  type="submit">PURCHASE</button> 
+                    <br>
+                </center>
+            </form>
+        </div>
+    </body>
+</html>
+
+--------------------------
+cart.jsp
+--------------------------
+<%-- 
+    Document   : cart
+    Created on : Jun 7, 2022, 9:37:44 AM
+    Author     : 221005
+--%>
+<%@page import="java.sql.*"%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Cart</title>
+     <style>
+            body{
+                background-color: dimgrey; 
+            }
+            h1{
+                padding:3rem;
+                text-align: center;
+                font-family: monospace;
+                color: #eaeaea;
+                font-size:2rem;
+
+            }
+            h2{
+                padding-top:3rem;
+                text-align: center;
+                font-family: monospace;
+                color: deeppink;
+                font-size:2rem;
+            }
+            #cart{
+                margin-left: 10rem;
+                margin-right: 10rem;
+                padding: 3rem;
+                padding-top: 2.5rem;
+                padding-bottom:2.5rem; 
+                text-align: left;
+                background-color: #eaeaea;
+                border-radius: 3rem;
+            }
+            th{
+                width: 150px;
+                font-family: monospace;
+                font-weight: bold;
+                font-size: 1.5rem;
+                color: darkblue;
+            }
+            td{
+                padding:0.9rem;
+                text-align: center;
+                font-family: monospace;
+                font-size: 1.5rem;
+                color: darkblue;
+            }
+
+        </style>
+    </head>
+    <body>
+        <h1>SHOPPING CART LIST</h1>
+        <div id="cart">
+           
+                <% 
+                    String name = request.getParameter("name");
+                    try{
+                        Class.forName("oracle.jdbc.OracleDriver");
+                        Connection con=DriverManager.getConnection("jdbc:oracle:thin:@172.16.1.4:1521:saradb","221005","welcome");
+                        Statement st = con.createStatement();
+                %>
+                <center>
+                <table border="1">
+                    <tr>
+                        <th>S no</th>
+                        <th>Product Name</th> 
+                        <th>Quantity</th>
+                    </tr>
+                    
+                <%! int total; %>
+                <%! String products[]; %>
+                <%
+                total=0;
+                products=request.getParameterValues("products");
+                       
+                for(int i=0;i<products.length;i++){
+                %>
+                    <tr>
+                    <td><%=(i+1)%></td>
+                    <td><%= products[i] %></td>
+                    <%
+                    String query1 = "UPDATE stockdb SET qtnonhand=qtnonhand-1 WHERE productname='"+products[i]+"'";
+                    st.executeUpdate(query1);
+                    %>
+                    <td>1</td>
+                    <%
+                    String query2 = "INSERT INTO orderdetails VALUES ('"+ name +"','"+products[i]+"',1,sysdate)";
+                    st.executeUpdate(query2);
+                    %>
+                    
+                    </tr>
+                
+                <%
+                        }
+                    con.close();   
+                    }catch(Exception e){ 
+                        e.printStackTrace();
+                    }
+                %>
+                </table>
+                </center>
+                <br>
+                <center>
+                    <h2>Your order will be Delivered Soon</h2> 
+                    <br>
+                </center>
+        </div>
+    </body>
+</html>
+----------------------------------------------------

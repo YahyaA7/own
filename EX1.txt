@@ -1,0 +1,206 @@
+﻿--------------------------
+813819104005
+--------------------------
+Exercise 1
+--------------------------
+index.html
+--------------------------
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Seven Wonders</title>
+    </head>
+    <body style="background-color:#0f0f0f;color:#EAEAEA";>
+    <center>
+        <h1 style="font-size:3rem;">Seven Wonders of the World</h1>
+        <img style="width:25rem; "src="seven_wonders.jpg" alt="Image not available" usemap="#sw">
+        <map name="sw">
+
+            <area shape="rect" coords="0,0,199,139" href="pyramid.html">
+            <area shape="rect" coords="0,139,199,283" href="wallofchina.html">
+            <area shape="rect" coords="0,283,199,430" href="petra.html">
+
+            <area shape="rect" coords="199,0,396,139" href="christredeemer.html">
+            <area shape="rect" coords="199,139,396,283" href="machupicchu.html">
+            <area shape="rect" coords="199,283,396,430" href="tajmahal.html">
+
+            <area shape="rect" coords="0,430,396,553" href="roman.html">
+        </map>
+    </center>
+</body>
+</html>
+--------------------------
+christredeemer.html
+--------------------------
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Christ Redeemer</title>
+    </head>
+    <body style="background-color:#0f0f0f;color:#bAEAEA">
+    <center>
+        <h1>Christ Redeemer</h1>
+        <img style="width:15rem" src="Christ_on_Corcovado_mountain.jpg" alt="Not available">
+    </center>
+    <div style="margin-left:22rem; padding: 2rem; color:#EAEAEA; font-size:1.5rem;">
+        <ul>
+            <li>Rio de Janeiro, Brazil</li>
+            <li>38 meters tall</li>
+            <li>Five years to construct</li>
+            <li>Cost $250,000</li> 
+            <li>Symbol for the city</li>
+        </ul>
+        <a style="text-align:center; color:cyan; text-decoration: none;" href="index.html">Home</a>
+    </div>
+</body>
+</html>
+--------------------------
+wallofchina.html
+--------------------------
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>The Great Wall of China</title>
+    </head>
+    <body style="background-color:#0f0f0f;color:#bAEAEA">
+    <center>
+        <h1>The Great Wall of China</h1>
+        <img style="width:25rem" src="great_wall_china.jpg" alt="Not available">
+    </center>
+    <div style="margin-left:22rem; padding: 2rem; font-size:1.5rem; color:#EAEAEA;">
+        <ul>
+            <li>Built and maintained between 5th B.C. and 16th A.D.</li>
+            <li>United defense system</li>
+            <li>Kept Mongols out</li>
+            <li>Largest man-made monument</li>
+            <li>See from space</li>
+        </ul>
+        <a style="text-align:center; color:cyan; text-decoration: none;" href="index.html">Home</a>
+    </div>
+</body>
+</html>
+--------------------------
+machupicchu.html
+--------------------------
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Machu Picchu</title>
+    </head>
+    <body style="background-color:#0f0f0f;color:#bAEAEA">
+    <center>
+        <h1>Machu Picchu</h1>
+        <img style="width:19rem" src="Machu_Picchu.jpg" alt="Not available">
+    </center>
+    <div style="margin-left:22rem; padding: 2rem; font-size:1.5rem; color:#EAEAEA;">
+        <ul>
+            <li>Peru, around 1450 A.D.</li>
+            <li>Built by an Incan Emperor</li>
+            <li>Andes Mountains</li>
+            <li>“City in the clouds”</li>
+            <li>Rediscovered in 1911</li>
+        </ul>
+        <a style="text-align:center; color:cyan; text-decoration: none;" href="index.html">Home</a>
+    </div>
+</body>
+</html>
+--------------------------
+petra.html
+--------------------------
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Petra, Jordan</title>
+    </head>
+    <body style="background-color:#0f0f0f;color:#bAEAEA">
+    <center>
+        <h1>Petra, Jordan</h1>
+        <img style="width:18.2rem" src="Al_Khazneh.jpg" alt="Not available">
+    </center>
+    <div style="margin-left:22rem; padding: 2rem; font-size:1.5rem; color:#EAEAEA;">
+        <ul>
+            <li>9 B.C. – 40 A.D.</li>
+            <li>Temple built into rock</li>
+            <li>Water Technology and Tunnel systems</li>
+            <li>Great example of middle eastern ancient culture</li>
+        </ul>
+        <a style="text-align:center; color:cyan; text-decoration: none;" href="index.html">Home</a>
+    </div>
+</body>
+</html>
+--------------------------
+pyramid.html
+--------------------------
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>The Pyramid at Chichen Itza</title>
+    </head>
+    <body style="background-color:#0f0f0f;color:#bAEAEA">
+    <center>
+        <h1>The Pyramid at Chichen Itza</h1>
+        <img style="width:36rem" src="Chichen_Itza.jpg" alt="Not available">
+    </center>
+    <div style="margin-left:22rem; padding: 2rem; font-size:1.5rem; color:#EAEAEA;">
+        <ul>
+            <li>Yucatan Peninsula, Mexico</li>
+            <li>Before 800 A.D.</li>
+            <li>Mayan temple</li>
+            <li>Political and Economic center</li>
+            <li>Last and greatest</li>
+        </ul>
+        <a style="text-align:center; color:cyan; text-decoration: none;" href="index.html">Home</a>
+    </div>
+</body>
+</html>
+--------------------------
+roman.html
+--------------------------
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>The Roman Colosseum</title>
+    </head>
+    <body style="background-color:#0f0f0f;color:#bAEAEA">
+    <center>
+        <h1>The Roman Colosseum</h1>
+        <img style="width:23rem" src="Colosseum_Rome.jpg" alt="Not available">
+    </center>
+    <div style="margin-left:22rem; padding: 2rem; font-size:1.5rem; color:#EAEAEA;">
+        <ul>
+            <li>Built in Rome, Italy</li>
+            <li>70 – 82 A.D.</li>
+            <li>Used to celebrate glory of Roman Empire</li>
+            <li>Modern stadiums still use this design</li>
+            <li>Gladiator games</li>
+        </ul>
+        <a style="text-align:center; color:cyan; text-decoration: none;" href="index.html">Home</a>
+    </div>
+</body>
+</html>
+--------------------------
+tajmahal.html
+--------------------------
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>The Taj Mahal</title>
+    </head>
+    <body style="background-color:#0f0f0f;color:#bAEAEA">
+    <center>
+        <h1>The Taj Mahal</h1>
+        <img style="width:28rem" src="tajmahal.jpg" alt="Not available">
+    </center>
+    <div style="margin-left:22rem; padding: 2rem; font-size:1.5rem; color:#EAEAEA;">
+        <ul>
+            <li>Agra, India</li>
+            <li>1630 A.D.</li>
+            <li>Built to honor dead wife</li>
+            <li>Most perfect jewel of Muslim art in India</li>
+            <li>Built of white marble</li>
+        </ul>
+        <a style="text-align:center; color:cyan; text-decoration: none;" href="index.html">Home</a>
+    </div>
+</body>
+</html>
+----------------------------------------------------

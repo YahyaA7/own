@@ -1,0 +1,167 @@
+--------------------------
+813819104005
+
+--------------------------
+Exercise 2
+--------------------------
+index.html
+--------------------------
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Legends University</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <style>
+            .bimg{
+                padding:1rem 0rem;
+                width:30rem;
+                display:block;
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <li><img id="logo" src="collegepics/logo1.jpg" alt="Not found"></li>
+            <li id="name">Legends University</li>
+            <li class="list"><a href="about.html">About</a></li>
+            <li class="list"><a href="dept.html">Department</a></li>
+            <li class="list"><a href="fac.html">Faculty</a></li>
+            <li class="list"><a href="cont.html">Contact Us</a></li>   
+        </nav>
+        <div class="building">
+            <h2 class="title" style="padding-left:2rem; color:maroon;">Location : Chennai, Tamilnadu</h2>
+            <center>  
+            <h2 class="title d">Our College Building Premises</h2>
+            <p style="font-family: monospace;font-size: 3rem;color: maroon;">Powerful ENGINEERS makes NATION powerful</p>
+            <img class="bimg" src="collegepics/college1.jpg">
+            <p style="font-family: monospace;font-size: 2rem;color: maroon;">We are giving a Quality Education.</p>
+            <img class="bimg" src="collegepics/college2.jpg">
+            <p style="font-family: monospace;font-size: 2rem;color: maroon;">We do not create ENGINEERS we cultivate ENGINEERS</p>
+            <img class="bimg" src="collegepics/college3.jpg">
+            <p style="font-family: monospace;font-size: 2rem;color: maroon;">LEGENDS ARE CREATED in LEGENDS UNIVERSITY</p>
+            </center>
+        </div>
+        
+    </body>
+</html>
+
+--------------------------
+about.html
+--------------------------
+
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>About us</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <nav>
+            <li><img id="logo" src="collegepics/logo1.jpg" alt="Not found"></li>
+            <li id="name">Legends University</li>
+            <li class="list"><a href="index.html">Home</a></li>
+            <li class="list"><a href="dept.html">Department</a></li>
+            <li class="list"><a href="fac.html">Faculty</a></li>
+            <li class="list"><a href="cont.html">Contact Us</a></li>   
+        </nav>
+    <center>
+        <h1 class="title">About Us</h1>
+        <img class="abimg" src='collegepics/logo.jpg'>
+        <p style="color: darkblue; font-size: 2rem;" >Our college is well known for it's reputation</p>
+        <p style="color: darkblue; font-size: 2rem;" >Powerful ENGINEERS makes NATION powerful</p>
+        <p style="color: darkblue; font-size: 2rem;" >We are giving a Quality Education.</p>
+        <p style="color: darkblue; font-size: 2rem;" >We do not create ENGINEERS we cultivate ENGINEERS</p>
+        <p style="color: darkblue; font-size: 2rem;" >LEGENDS ARE CREATED in LEGENDS UNIVERSITY</p>
+    </center>
+    </body>
+</html>
+
+--------------------------
+style.css
+--------------------------
+
+body{
+    background-color: #eaeaea;
+}
+#logo{
+    margin:-1rem;
+    padding-right:1rem;
+    padding-left: 1rem;
+    width: 5rem;
+    text-align:center;
+    background-color: transparent;
+    border-radius: 5rem;
+}
+#name{
+    font-weight: bolder;
+    font-size: 3rem;
+    padding-left: 1rem;
+    padding-right: 10rem;
+    color: indigo;
+    background-color: transparent;
+}
+nav{
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    background-color: #eaeaea;
+    border-radius: 2rem;
+    border-color: aliceblue;
+}
+li{
+    display:inline;
+}
+.list{
+    padding:1rem;
+    margin:1rem;
+    text-align:center;
+    background-color:  aliceblue;
+    border-radius: 5rem;
+}
+nav a{
+    font-weight: bold;
+    color: blueviolet;
+    font-size:1.5rem;
+    text-decoration: none;
+}
+
+.abimg{
+    padding:1rem 3rem;
+    width:25rem;
+    display: inline-block;
+}
+.title{
+    color: darkblue;
+    font-size: 3rem;
+    font-weight: bold;
+}
+.dimg{
+    padding:1rem;
+    margin:5rem;
+    width:25rem;
+}
+.para{
+    font-family: monospace;
+    font-size: 2rem;
+    color: maroon;
+}
+.d{
+    background-color: appworkspace;
+    padding: 3rem;
+}
+----------------------------------------------------

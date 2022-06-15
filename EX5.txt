@@ -1,0 +1,188 @@
+--------------------------
+813819104005
+--------------------------
+Exercise 5
+--------------------------
+index.html
+--------------------------
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Results</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                background-color: dimgrey; 
+            }
+            h1{
+                text-align: center;
+                font-family: monospace;
+                color: #eaeaea;
+                font-size:2rem;
+
+            }
+            #result{
+
+                margin-left: 10rem;
+                margin-right: 10rem;
+                padding: 3rem;
+                padding-top: 1rem;
+                padding-bottom:2.5rem; 
+                text-align: left;
+                background-color: #eaeaea;
+                border-radius: 3rem;
+            }
+            button{
+                padding:0.4rem 2rem;
+                margin:2rem;
+                color:#EAEAEA;
+                font-family: monospace;
+                font-weight: bold;
+                font-size: 1rem;
+                background-color: black;
+            }
+
+            label{
+                font-family: monospace;
+                font-weight: bold;
+                font-size: 1.5rem;
+                color: darkblue;
+                margin:4rem;
+            }
+            input{
+                position: absolute;
+                right: 25rem;
+                font-family: monospace;
+                font-weight: bold;
+                font-size: 1.5rem;
+                color: deeppink;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Results</h1>
+        <div id="result">
+            <form action="result" method="post">
+                <label>Enter Roll Number : </label>
+                <input type="number" id="rollno" name="rollno" required>
+                <br>
+                <center>
+                    <button  type="submit">Submit</button> 
+                    <br>
+                </center>
+            </form>
+        </div>
+    </body>
+</html>
+--------------------------
+result.java
+--------------------------
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet(urlPatterns = {"/result"})
+public class result extends HttpServlet {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
+        response.setContentType("text/html;charset=UTF-8");
+        String rollno=request.getParameter("rollno");
+        Class.forName("oracle.jdbc.OracleDriver");
+        Connection con=DriverManager.getConnection("jdbc:oracle:thin:@172.16.1.4:1521:saradb","221005","welcome");
+        String query = "SELECT * FROM studentdb WHERE rollno = "+rollno;
+        Statement st =con.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        try (PrintWriter out = response.getWriter()) {
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Result:"+rollno+"</title>");     
+            out.println("<style>body{font-size:1.5rem;}th,td{padding:0.75rem;}</style>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<center>");
+            if(rs.next()){  
+                int res=Integer.parseInt(rs.getString(3))+Integer.parseInt(rs.getString(4))+Integer.parseInt(rs.getString(5))+Integer.parseInt(rs.getString(6))+Integer.parseInt(rs.getString(7));
+                out.println("<h1>Name : " + rs.getString(1) + "</h1>");
+                out.println("<table border=2>");
+                out.println("<tr>");
+                out.println("<th>Subject</th>"); 
+                out.println("<th>Marks</th>");
+                out.println("</tr>");
+                out.println("<tr>");
+                out.println("<td>English</td>"); 
+                out.println("<td>"+rs.getString(3)+"</td>");
+                out.println("</tr>");
+                out.println("<tr>");
+                out.println("<td>Maths</td>"); 
+                out.println("<td>"+rs.getString(4)+"</td>");
+                out.println("</tr>");
+                out.println("<tr>");
+                out.println("<td>Science</td>"); 
+                out.println("<td>"+rs.getString(5)+"</td>");
+                out.println("</tr>");
+                out.println("<tr>");
+                out.println("<td>Social</td>"); 
+                out.println("<td>"+rs.getString(6)+"</td>");
+                out.println("</tr>");
+                out.println("<tr>");
+                out.println("<td>Tamil</td>"); 
+                out.println("<td>"+rs.getString(7)+"</td>");
+                out.println("</tr>");
+                out.println("<tr>");
+                out.println("<th>TOTAL</th>"); 
+                out.println("<th>"+res+"</th>");
+                out.println("</tr>");
+               
+            }else{
+               out.println("<h1>Invalid Roll Number</h1>");
+            }
+                out.println("</center>");
+                out.println("</body>");
+                out.println("</html>");
+        }
+	con.close();
+    }
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(result.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(result.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(result.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(result.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }
+
+}
+----------------------------------------------------

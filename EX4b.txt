@@ -1,0 +1,150 @@
+--------------------------
+813819104005
+--------------------------
+Exercise 4b
+--------------------------
+index.html
+--------------------------
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Register</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                background-color: dimgrey; 
+            }
+            h1{
+                text-align: center;
+                font-family: fantasy;
+                color: #eaeaea;
+                font-size:2rem;
+
+            }
+            #hitcount{
+
+                margin-left: 10rem;
+                margin-right: 10rem;
+                padding: 3rem;
+                padding-top: 1rem;
+                padding-bottom:2.5rem; 
+                text-align: left;
+                background-color: #eaeaea;
+                border-radius: 3rem;
+            }
+            button{
+                padding:0.4rem 2rem;
+                margin:2rem;
+                color:#EAEAEA;
+                font-family: monospace;
+                font-weight: bold;
+                font-size: 1rem;
+                background-color: black;
+            }
+
+            label{
+                font-family: monospace;
+                font-weight: bold;
+                font-size: 1.5rem;
+                color: darkblue;
+                margin:4rem;
+            }
+            input{
+                position: absolute;
+                right: 25rem;
+                font-family: monospace;
+                font-weight: bold;
+                font-size: 1.5rem;
+                color: deeppink;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Hit Count</h1>
+        <div id="hitcount">
+            <form action="hitcount" method="post">
+                <label>Name</label>
+                <input type="text" id="name" name="name" required>
+                <br>
+                <center>
+                    <button  type="submit">Submit</button> 
+                    <br>
+                </center>
+            </form>
+        </div>
+    </body>
+</html>
+--------------------------
+hitcount.java
+--------------------------
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+@WebServlet(urlPatterns = {"/hitcount"})
+public class hitcount extends HttpServlet {
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        String name = request.getParameter("name");
+        int count;
+        HttpSession hs = request.getSession();
+        try (PrintWriter out = response.getWriter()) {
+            
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet hitcount</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            
+        if(hs.isNew()){
+            hs.setAttribute("name",name);
+            hs.setAttribute("count","0");
+            out.println("<h1>Welcome " + name + "</h1>");
+            out.println("<h3>This is a New User</h3>");
+        }else{
+            String sname= hs.getAttribute("name").toString();
+            out.println("<h1>Welcome " + sname + "</h1>");
+            out.println("<h3>This is a Old User</h3>");
+            count=Integer.parseInt(hs.getAttribute("count").toString());
+            count++;
+            hs.setAttribute("count",count);
+        }
+        
+        out.println("<form action=hitcount method=post>");
+        out.println("<input type=submit value=Hit ME!>");
+        out.println("</form>");
+        count=Integer.parseInt(hs.getAttribute("count").toString());
+        out.println("<h3>Hit Count = "+count+"</h3>");
+        out.println("</body>");
+        out.println("</html>");
+        }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }
+
+}
+----------------------------------------------------
