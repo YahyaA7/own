@@ -1,0 +1,453 @@
+diag
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:paddingBottom="@dimen/activity_vertical_margin"
+android:paddingLeft="@dimen/activity_horizontal_margin"
+android:paddingRight="@dimen/activity_horizontal_margin"
+android:paddingTop="@dimen/activity_vertical_margin"
+app:layout_behavior="@string/appbar_scrolling_view_behavior"
+tools:context="com.example.project1.graphicalshape.MainActivity"
+tools:showIn="@layout/activity_main"
+android:background="#ffddcc">
+<TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+
+android:text="Graphical primitives"
+android:layout_centerHorizontal="true"
+android:textStyle="bold"
+android:textColor="#ffaabb"
+android:textSize="15pt"
+android:id="@+id/hello"/>
+<CheckBox
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="circle"
+android:textStyle="bold"
+android:textSize="12pt"
+android:textColor="#bbaaff"
+android:id="@+id/chk"
+android:layout_below="@+id/hello"/>
+<CheckBox
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="rectangle"
+android:textSize="12pt"
+android:textColor="#bbaaff"
+android:textStyle="bold"
+android:id="@+id/chk1"
+android:layout_below="@+id/chk"/>
+<CheckBox
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="line"
+android:textSize="12pt"
+android:textColor="#bbaaff"
+android:textStyle="bold"
+
+android:id="@+id/chk2"
+android:layout_below="@+id/chk1"/>
+<Button
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="circle"
+android:id="@+id/cir"
+android:layout_below="@+id/chk2" />
+<Button
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="rectangle"
+android:id="@+id/rect"
+android:layout_below="@+id/cir"/>
+<Button
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="line"
+android:id="@+id/lin"
+android:layout_below="@+id/rect"/>
+<ImageView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:id="@+id/img"
+android:layout_below="@+id/lin" />
+</RelativeLayout>
+
+MainActivity.java
+package com.example.project1.graphicalshape;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.ImageView;
+public class MainActivity extends AppCompatActivity {
+CheckBox c,c1,c2;
+Button b,b1,b2;
+ImageView i,i1,i2;
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+addshape();
+}
+void addshape() {
+b = (Button) findViewById(R.id.cir);
+c = (CheckBox) findViewById(R.id.chk);
+i = (ImageView) findViewById(R.id.img);
+final Bitmap bitmap = Bitmap.createBitmap((int) getWindowManager().
+getDefaultDisplay().getWidth(), (int)
+getWindowManager().getDefaultDisplay().getHeight(),
+Bitmap.Config.ARGB_8888);
+
+final Paint paint = new Paint();
+final Canvas canvas = new Canvas(bitmap);
+b.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View v) {
+if (c.isChecked()) {
+paint.setColor(Color.MAGENTA);
+canvas.drawCircle(500, 500, 400, paint);
+i.setImageBitmap(bitmap);
+} } });
+b1=(Button)findViewById(R.id.rect);
+c1=(CheckBox)findViewById(R.id.chk1);
+i1 = (ImageView) findViewById(R.id.img);
+final Bitmap bit = Bitmap.createBitmap((int) getWindowManager().
+getDefaultDisplay().getWidth(), (int)
+getWindowManager().getDefaultDisplay().getHeight(),
+Bitmap.Config.ARGB_8888);
+final Paint pnt = new Paint();
+final Canvas can = new Canvas(bit);
+b1.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View v) {
+if (c1.isChecked()) {
+pnt.setColor(Color.BLUE);
+can.drawRect(300, 200, 1000, 800, pnt);
+i1.setImageBitmap(bit);
+} } });
+b2=(Button)findViewById(R.id.lin);
+c2=(CheckBox)findViewById(R.id.chk2);
+i2=(ImageView)findViewById(R.id.img);
+final Bitmap bt = Bitmap.createBitmap((int) getWindowManager().
+
+getDefaultDisplay().getWidth(), (int)
+getWindowManager().getDefaultDisplay().getHeight(),
+Bitmap.Config.ARGB_8888);
+final Paint pt = new Paint();
+final Canvas canv = new Canvas(bt);
+b2.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View v) {
+if (c2.isChecked()) {
+pt.setColor(Color.BLUE);
+canv.drawLine(100, 100, 900, 900, pt);
+i2.setImageBitmap(bt); } }});}}
+
+gps
+
+Android Manifest.xml:
+**********************
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+package="com.example.admin.gps">
+<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-
+permission>
+
+<uses-permission
+android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+<application
+android:allowBackup="true"
+android:icon="@mipmap/ic_launcher"
+android:label="@string/app_name"
+android:roundIcon="@mipmap/ic_launcher_round"
+android:supportsRtl="true"
+android:theme="@style/AppTheme">
+<activity android:name=".MainActivity">
+<intent-filter>
+<action android:name="android.intent.action.MAIN" />
+
+<category android:name="android.intent.category.LAUNCHER" />
+</intent-filter>
+</activity>
+</application>
+</manifest>
+activity_main.xml:
+******************
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:orientation="vertical"
+android:layout_height="match_parent"
+tools:context="com.example.admin.gps.MainActivity">
+<Button
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:id="@+id/btn1"
+android:text="Get Location"/>
+</LinearLayout>
+MainActivity.java:
+******************
+package com.example.admin.gps;
+import android.Manifest;
+import android.app.Activity;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Build;
+import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+public class MainActivity extends AppCompatActivity {
+Button b1;
+
+double lat, longg;
+private LocationManager locationManager;
+private LocationListener locationListener;
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+b1 = (Button) findViewById(R.id.btn1);
+locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+locationListener = new LocationListener() {
+@Override
+public void onLocationChanged(Location location) {
+lat = location.getLatitude();
+longg = location.getLongitude();
+}
+@Override
+public void onStatusChanged(String s, int i, Bundle bundle) {
+}
+@Override
+public void onProviderEnabled(String s) {
+}
+@Override
+public void onProviderDisabled(String s) {
+}
+};
+if (ActivityCompat.checkSelfPermission(this,
+Manifest.permission.ACCESS_FINE_LOCATION) !=
+PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
+Manifest.permission.ACCESS_COARSE_LOCATION) !=
+PackageManager.PERMISSION_GRANTED) {
+return;
+
+}
+locationManager.requestLocationUpdates("gps", 2000, 0, locationListener);
+b1.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+
+Toast.makeText(getApplicationContext(),"Lat:"+lat+"Long:"+longg,Toast.LENGTH_LONG).sh
+ow();
+}
+});
+}
+}
+
+aldg
+
+ACTIVITY_MAIN.xml
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:paddingBottom="@dimen/activity_vertical_margin"
+Ex: No: 09
+Date:
+
+android:paddingLeft="@dimen/activity_horizontal_margin"
+android:paddingRight="@dimen/activity_horizontal_margin"
+android:paddingTop="@dimen/activity_vertical_margin"
+app:layout_behavior="@string/appbar_scrolling_view_behavior"
+tools:context="com.example.student.alert_50.MainActivity"
+tools:showIn="@layout/content_main">
+
+<TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Hello World!"
+android:id="@+id/txt1"/>
+<ImageView
+android:layout_width="300dp"
+android:layout_height="200dp"
+android:layout_below="@+id/txt1"
+android:background="@drawable/screenshot"/>
+</RelativeLayout>
+
+MAINACTIVITY.java
+==================
+package com.example.student.Alert_Message;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+
+import android.view.Menu;
+import android.view.MenuItem;
+public class MainActivity extends AppCompatActivity {
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.content_main);
+new AlertDialog.Builder(this)
+.setTitle("Alert Message")
+.setMessage("Do you want to close the File?")
+.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+@Override
+public void onClick(DialogInterface dialog, int which) {
+finish();
+}
+})
+.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+@Override
+public void onClick(DialogInterface dialog, int which) {
+dialog.cancel();
+}
+}).show();
+}
+}
+Code for Activity_main.xml: <?xml version="1.0" encoding="utf-8"?> <LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+android:layout_height="match_parent" android:orientation="vertical"> <TimePicker
+android:id="@+id/timePicker" android:layout_width="wrap_content"
+android:layout_height="wrap_content" android:layout_gravity="center" /> <ToggleButton
+android:id="@+id/toggleButton" 76
+android:layout_width="wrap_content" android:layout_height="wrap_content"
+android:layout_gravity="center" android:layout_margin="20dp" android:checked="false"
+android:onClick="OnToggleClicked" /> </LinearLayout>
+Ex: No: 12
+Date:
+
+ Now click on Design and your application will look as given below.
+ So now the designing part is completed.
+Changes in Manifest for the Android Application:
+• Click on app -> manifests -> AndroidManifest.xml.
+• Now change the activity tag to receiver tag in the AndroidManifest.xml file as shown below.
+Code for AndroidManifest.xml:
+<?xml version="1.0" encoding="utf-8"?> <manifest
+xmlns:android="http://schemas.android.com/apk/res/android" package="com.example.exno13" >
+<application android:allowBackup="true"
+android:icon="@mipmap/ic_launcher"
+android:label="@string/app_name"
+android:supportsRtl="true"
+android:theme="@style/AppTheme" >
+<activity android:name=".MainActivity" >
+<intent-filter> <action android:name="android.intent.action.MAIN" />
+<category android:name="android.intent.category.LAUNCHER" /> </intent-filter> </activity>
+<receiver android:name=".AlarmReceiver" > </receiver> </application> </manifest>
+• So now the changes are done in the Manifest.
+Java Coding for the Android Application: Java Coding for Main Activity:
+• Click on app -> java -> com.example.exno13 -> MainActivity.
+• Then delete the code which is there and type the code as given below.
+Code for MainActivity.java:
+packagecom.example.exno13;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TimePicker;
+import android.widget.Toast;
+import android.widget.ToggleButton;
+import java.util.Calendar;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity
+{
+TimePicker alarmTimePicker;
+PendingIntent pendingIntent;
+AlarmManager alarmManager
+@Override
+protected void onCreate(Bundle savedInstanceState)
+{
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+alarmTimePicker = (TimePicker) findViewById(R.id.timePicker);
+alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+}
+public void OnToggleClicked(View view)
+{
+long time;
+if (((ToggleButton) view).isChecked())
+{
+Toast.makeText(MainActivity.this, "ALARM ON", Toast.LENGTH_SHORT).show();
+Calendar calendar = Calendar.getInstance();
+calendar.set(Calendar.HOUR_OF_DAY, alarmTimePicker.getCurrentHour());
+calendar.set(Calendar.MINUTE, alarmTimePicker.getCurrentMinute());
+Intent intent = new Intent(this, AlarmReceiver.class); pendingIntent = PendingIntent.getBroadcast(this, 0,
+intent, 0);
+time=(calendar.getTimeInMillis()-(calendar.getTimeInMillis()%60000));
+if(System.currentTimeMillis()>time)
+{
+if (calendar.AM_PM == 0)
+time = time + (1000*60*60*12);
+else
+time = time + (1000*60*60*24);
+}
+alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, time, 10000, pendingIntent);
+}
+Else
+{
+alarmManager.cancel(pendingIntent);
+
+Toast.makeText(MainActivity.this, "ALARM OFF", Toast.LENGTH_SHORT).show(); } }
+
+Java Coding for Alarm Receiver:
+• Click on app -> java -> com.example.exno13 -> AlarmReceiver.
+• Then delete the code which is there and type the code as given below.
+Code for AlarmReceiver.java:
+packagecom.example.exno13;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.widget.Toast;
+public class AlarmReceiver extends BroadcastReceiver
+{
+@Override
+public void onReceive(Context context, Intent intent)
+{
+Toast.makeText(context, "Alarm! Wake up! Wake up!", Toast.LENGTH_LONG).show();
+Uri alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+
+if (alarmUri == null)
+{
+alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+}
+Ringtone ringtone = RingtoneManager.getRingtone(context, alarmUri); ringtone.play(); } }
