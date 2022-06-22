@@ -1,0 +1,79 @@
+<!-- LAB EX8: DOM PARSER -->
+<?xml version="1.0"?>
+<contacts>
+<person>
+<name>Aparna</name>
+<mobile>9856741230</mobile>
+</person>
+<person>
+<name>Babu</name>
+<mobile>9745201623</mobile>
+</person>
+<person>
+<name>Chandrika</name>
+<mobile>985675124</mobile>
+</person>
+<person>
+<name>Dimple</name>
+<mobile>987534123</mobile>
+</person>
+<person>
+<name>Eshwar</name>
+<mobile>901074123</mobile>
+</person>
+</contacts>
+<!-- ex8.html -->
+<html>
+    <head>
+        <title>Lab exercise 8</title>
+        <style>
+            form{
+                background-color: #9cd2d9;
+                border: 2px solid red;
+                margin-left: 35%;
+                width: 50%;
+                padding: 20px;		
+            }
+        </style>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body style="background-color: #80dbbc8c">
+        <div>
+            <h1 style="text-align:center">SEARCH USER</h1>
+            <form>
+                Enter mobile no.: <input type="text" name="t1" id="t1"/><br><br>
+                <input type="submit" id="b1" OnClick="searchUser()" value="Search"/><input type="reset" id="b2" style="margin-left: 20px"/>
+            </form>   
+        </div>
+
+	<script>
+		function searchUser()
+		{
+			var i,j;
+			var result=false;
+			var xmldoc=new ActiveXObject("MICROSOFT.XMLDOM");
+			xmldoc.load("contacts.xml");
+			var mobile=document.getElementById("t1").value;
+ 			for(i=0;i<xmldoc.documentElement.childNodes.length;i++)
+			{
+				for(j=0;j<xmldoc.documentElement.childNodes[i].childNodes.length;j++)
+				{
+			
+						if(xmldoc.documentElement.childNodes[i].childNodes[j].childNodes[0].nodeValue==mobile)
+						{
+							result=true;
+							alert("User found");
+						}
+						
+
+				}
+			}
+			
+				if(result==false)
+						alert("User not found");
+			
+		}
+	</script>
+    </body>
+</html>

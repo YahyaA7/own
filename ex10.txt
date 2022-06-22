@@ -1,0 +1,70 @@
+ex10 : Creating and deploying a J2EE WEBSERVICE
+===============================================
+package abc;
+import javax.jws.WebService;
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+/**
+ *
+ * @author Admin
+ * J2EE WEBERVICE FOR TEMPERATURE CONVERSION
+*/
+@WebService(serviceName = "Temperature")
+public class Temperature {
+
+    /**
+     * This is a sample web service operation
+     */
+    @WebMethod(operationName = "CelciusToFarenheit")
+    public double CelciusToFarenheit(double celcius)
+    {
+        double farenheit = ((celcius *9 / 5) + 32);
+        return farenheit;
+    }
+    @WebMethod(operationName = "FarenheitToCelcius")
+    public double FarenheitToCelcius(double farenheit)
+    {
+        double celcius = ((farenheit -32)/9 *5);
+        return celcius;
+    }
+}
+
+INVOKING A J2EE WEBSERVICE (Webservices Client)
+==========================
+package javaapplication6;
+public class JavaApplication6 {
+    public static void main(String[] args) {
+        // TODO code application logic here
+        System.out.println("Webservices Client invoking the webservice");
+        double celcius = Double.parseDouble(args[0]);
+        System.out.println(celciusToFarenheit(celcius));
+        System.out.println("Invoked the Webservice successfully");
+        double farenheit = Double.parseDouble(args[1]);
+        System.out.println(farenheitToCelcius(celcius));
+        System.out.println("Invoked the Webservice successfully");
+    }
+
+    private static double celciusToFarenheit(double arg0) {
+        abc.Temperature_Service service = new abc.Temperature_Service();
+        abc.Temperature port = service.getTemperaturePort();
+        return port.celciusToFarenheit(arg0);
+    }
+
+    private static double farenheitToCelcius(double arg0) {
+        abc.Temperature_Service service = new abc.Temperature_Service();
+        abc.Temperature port = service.getTemperaturePort();
+        return port.farenheitToCelcius(arg0);
+    }
+
+    
+    
+}
+/*
+output
+======
+Webservices Client invoking the webservice
+89.6
+Invoked the Webservice successfully
+0.0
+Invoked the Webservice successfully
+*/
