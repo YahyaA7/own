@@ -1,0 +1,60 @@
+RSA Algorithm
+----------------------------------------------
+
+import java.io.*;
+import java.util.Scanner;
+
+class RSA {
+
+    public static void main(String args[]) {
+	Scanner sc=new Scanner(System.in);
+	System.out.println("RSA Algorithm");
+	System.out.println("Enter First prime number : ");
+        int p = sc.nextInt();
+	System.out.println("Enter Second prime number : ");
+        int q = sc.nextInt();
+	System.out.println("Enter Message : ");
+        int m = sc.nextInt();
+	int n = p * q;
+	int phi = (p-1)*(q-1);
+	System.out.println("Enter Public Key (Relatively Prime to "+phi+" ) : ");
+	int e=sc.nextInt();
+	int d=0;
+	for(int i=1;i<phi;i++){
+	    if((i*e)%phi == 1){
+		d=i;
+		break;
+	    }
+	}
+	System.out.println("Private Key : " + d);
+	int c=m;
+	for(int i=1;i<e;i++){
+	    c=(c*m) % n;
+	}
+	System.out.println("Cipher Text : " + c);
+
+	int de=c;
+	for(int i=1;i<d;i++){
+	    de=(de*c) % n;
+	}
+	System.out.println("Decrypted Text : " + de);
+    }
+}
+
+
+OUTPUT
+----------------------------------------------
+RSA Algorithm
+Enter First prime number :
+17
+Enter Second prime number :
+31
+Enter Message :
+3
+Enter Public Key (Relatively Prime to 480 ) :
+7
+Private Key : 343
+Cipher Text : 79
+Decrypted Text : 3
+----------------------------------------------
+----------------------------------------------
